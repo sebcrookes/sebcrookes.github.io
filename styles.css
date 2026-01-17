@@ -96,14 +96,22 @@ nav {
     position: fixed;
     z-index: 10;
 
-    top: 0;
+    /* The blur extends outside the viewport to cover the area shown behind the status bar on Safari iOS */
+    top: -10vh;
     width: 100vw;
-    height: 10vh;
+    height: 20vh;
 
     pointer-events: none;
 
-    backdrop-filter: blur(10px);   
-    mask: linear-gradient(black, 75%, transparent);
+    backdrop-filter: blur(2px);
+    mask: linear-gradient(black 0%, black 70%, #000000AA 80%, transparent 100%);
+
+    /* Keep this - for some reason, it fixes a rendering bug where Safari doesn't render the part outside the viewport */
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
 }
 
 .logo {
@@ -240,7 +248,7 @@ nav {
 }
 
 #nav-menu-title {
-    text-shadow: 0px 0px 50px #FFFFFF;
+    text-shadow: 0px 0px 50px #FFFFFF20;
     font-size: min(10vw, 4vh);
     padding-left: 10px;
     padding-right: 10px;
@@ -1075,6 +1083,11 @@ footer {
 
     width: 100%;
     height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;    
 
     background-image: linear-gradient(#121212, #090909 100%);
 }
